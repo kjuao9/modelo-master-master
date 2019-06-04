@@ -53,7 +53,10 @@
 							values('$nome', '$email', '$senha')";
 							$resultado = mysqli_query($con, $sql);
 								if($resultado){
-									print "Usuário inserido";
+									print "<script>
+									alert('Usuário Inserido');
+									window.location.href=window.location.href;
+								</script>";;
 											  }
 									}#conexão
 					else{
@@ -71,7 +74,7 @@
 			//MODELO DE MENSAGEM APÓS QUALQUER CADASTRO NO BANCO DE DADOS.
 			/*
 			print "<script>
-				alert('MENSAGEM...')
+				alert('MENSAGEM...');
 				window.location.href=window.location.href;
 			</script>";
 			*/
