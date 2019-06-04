@@ -44,6 +44,7 @@
 				$senha2 = $_POST["senha2"];
 				// print "$nome, $email, $senha, $senha2";
 					if($senha == $senha2){
+						$senha = md5($senha);
 						include_once "conexao.php";
 						$con = conecta_mysql();
 							if($con){
