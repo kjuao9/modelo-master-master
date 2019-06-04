@@ -61,7 +61,10 @@
 						}#else da conexão
 				    }#if que verifica as senhas
 				else{
-					print "Suas senhas são diferentes.";
+					
+					print "<script>
+					alert('Suas senhas são diferentes')
+					</script>";
 				}#else do if que verifica as senhas
 			}#isset
 			
