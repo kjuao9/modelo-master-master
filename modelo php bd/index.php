@@ -48,6 +48,11 @@
 						$dados_usuario = mysqli_fetch_assoc($resultado_sql);
 						if(isset($dados_usuario["codigo"])){
 							print "e-mail e senha correto.";
+							session_start();
+							$_SESSION["codigo"] = $dados_usuario["codigo"];
+							$_SESSION["nome"] = $dados_usuario["nome"];
+							$_SESSION["email"] = $dados_usuario["email"];
+							header("location:login_correto.php");
 						}
 						else{
 							print "
