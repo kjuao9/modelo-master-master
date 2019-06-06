@@ -33,7 +33,36 @@
 			<br/> Novo por aqui? <a href="cadastro_usuario.php">Inscreva-se Agora >></a>
 			<?php
 				//CÓDIGO PHP AQUI
-				session_start();
+				// session_start();
+				if(isset($_POST["email"])){
+					$email = $_POST["email"];
+					$senha = $_POST["senha"];
+					$senha = md5($senha);
+					include_once "conexao.php";
+					$con = conecta_mysql();
+					$sql = "SELECT * FROM  usuarios 
+					WHERE email = '$email' and senha ='$senha'";
+					$resultado_sql = mysqli_query($con,$sql);
+					if($resultado_sql){
+						//mysqli_fetch_assoc converte a consulta em um vetor
+						$dados_usuario = mysqli_fetch_assoc($resultado_sql);
+						if(isset($dados_usuario["codigo"])){
+							print "e-mail e senha correto.";
+						}
+						else{
+							print "
+							<script>
+							alert('e-mail e senha não conferem');
+							<script>
+							";
+						}
+
+					}
+					else{
+						print "Erro de SQL";
+					}
+	
+				}
 
 
 			//tratando erros de direcionamento
