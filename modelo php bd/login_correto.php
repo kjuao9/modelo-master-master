@@ -21,9 +21,9 @@
 
 	<div id="div-area-principal">
 		<div id="div-pessoal" class="borda-arredondada">
-			<span class="negrito-maior">Nome do Usuário</span>
+			<span class="negrito-maior"><?php print$_SESSION["nome"]?></span>
 			<br/>
-			<span class="italico">E-mail</span> <br/><br/>
+			<span class="italico"><?php print$_SESSION["email"]?></span> <br/><br/>
 			<hr/><br/>
 				<table>
 					<tr>
