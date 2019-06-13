@@ -42,7 +42,25 @@
 				<input type="reset" value="Cancelar"/>
 			</form>
 			<?php
-			//código PHP aqui!
+	if(isset($_POST["mensagem"])){
+		$mensagem = $_POST["mensagem"];
+			if(strlen($mensagem) > 1){
+				include_once "conexao.php";
+				$con = conecta_mysql();
+					if($con){
+	
+					$sql = "INSERT INTO postagem (texto_postagem, id_usuario)
+					values('$mensagem', '$id_usuario')";
+					if(mysqli_query($con, $sql)){
+						print "<script> alert('Postagem Realizada!') </script>";
+					}
+					else{
+						print "<script> alert('Erro ao postar a mensagem')</script>";
+					}
+				}
+			}
+		}
+
 
 			?>
 		</div>
