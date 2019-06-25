@@ -33,5 +33,15 @@
     return $string;
   }
 
-
+  function verificar_email($con, $email){
+    $sql = "SELECT email FROM usuarios WHERE email = $email";
+    $resultado = mysqli_query($con, $sql);
+    $usuario = mysqli_fetch_assoc($resultado);
+    if( isset($usuario["email"]) ){
+      //existe email
+    }
+    else{
+      //não existe email
+    }
+  }
   ?>
