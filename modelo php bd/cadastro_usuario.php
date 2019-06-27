@@ -60,7 +60,7 @@
 									window.location.href=window.location.href;
 								</script>";
 											  }
-									#conexão
+									
 					else{
 						print "erro de SQL";
 						}#else da conexão
@@ -68,14 +68,14 @@
 							else{
 								print"Este e-mail já existe, escolha outro e-mail.";
 							}
-				    }#if que verifica as senhas
+				    }#if da conexão
 				else{
 										
 					print "<script>
 					alert('Suas senhas são diferentes')
 					</script>";
-				}#if que verifica as senhas
-			}#else do if que verifica as senhas
+				}#else do if que verifica as senhas
+			}#if que verifica as senhas
 		}#isset
 			
 			//MODELO DE MENSAGEM APÓS QUALQUER CADASTRO NO BANCO DE DADOS.
