@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html> 
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8"/>
@@ -53,21 +53,17 @@
 							$_SESSION["nome"] = $dados_usuario["nome"];
 							$_SESSION["email"] = $dados_usuario["email"];
 							header("location:login_correto.php");
-						}
-						else{
-							print "
-							<script>
-							alert('e-mail e senha não conferem');
-							<script>
-							";
-						}
+								 }
+							else{
+							print"<script> alert('e-mail e senha não conferem'); </script>";
+								}
 
-					}
-					else{
-						print "Erro de SQL";
-					}
+				 					}
+									else{
+										print "Erro de SQL";
+										}
 	
-				}
+										}
 
 
 			//tratando erros de direcionamento
@@ -76,14 +72,15 @@
 				if($erro==1){
 					echo "<script> alert('Mensagem do ERRO 1'); </script>";
 					print"";
-				}
+							}
 				if($erro==2){
 					echo "<script> alert('ATENÇÃO, é necessário fazer o login'); </script>";
-				}
-			} //fechando isset do método GET
+							}
+									} //fechando isset do método GET
 			?>
 
 		</div> <!-- Fechando div Postagem -->
 	</div> <!--  Fechando div principal-->
 </body>
 </html>
+ -->
