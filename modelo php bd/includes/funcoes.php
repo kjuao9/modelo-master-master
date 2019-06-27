@@ -34,14 +34,17 @@
   }
 
   function verificar_email($con, $email){
-    $sql = "SELECT email FROM usuarios WHERE email = $email";
+    $sql = "SELECT email FROM usuarios WHERE email = '$email'";
     $resultado = mysqli_query($con, $sql);
     $usuario = mysqli_fetch_assoc($resultado);
+    
     if( isset($usuario["email"]) ){
-      //existe email
+        // print("e-mail encontrado");
+        return false;
     }
     else{
-      //não existe email
+      // print("e-mail não encontrado");
+      return true;
     }
   }
   ?>
