@@ -1,5 +1,12 @@
 <?php
 include "../conexao.php";
+$con = conecta_mysql();
+
+include "../includes/funcoes.php";
+verificar_email($con, "nome@email.com");
+print"<br />";
+
+
 $sql = "SELECT * FROM usuarios";
 $con = conecta_mysql();
 $resultado = mysqli_query($con, $sql);
@@ -24,4 +31,8 @@ foreach($usuarios as $usuario){
 }
 
 }
+//////////////////////////////////////////////////////////
+
+
+
 ?>
