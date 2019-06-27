@@ -48,7 +48,9 @@
 						include_once "conexao.php";
 						$con = conecta_mysql();
 							if($con){
-							// print "a conexão foi feita!";
+							// verificar email;
+							include "includes/funcoes.php";
+							if(verificar_email($con, $email)){
 							$sql = "INSERT INTO usuarios (nome, email, senha)
 							values('$nome', '$email', '$senha')";
 							$resultado = mysqli_query($con, $sql);
@@ -56,20 +58,25 @@
 									print "<script>
 									alert('Usuário Inserido');
 									window.location.href=window.location.href;
-								</script>";;
+								</script>";
 											  }
-									}#conexão
+									#conexão
 					else{
-						print "erro na conexão";
+						print "erro de SQL";
 						}#else da conexão
+							}//if que verifica email
+							else{
+								print"Este e-mail já existe, escolha outro e-mail.";
+							}
 				    }#if que verifica as senhas
 				else{
-					
+										
 					print "<script>
 					alert('Suas senhas são diferentes')
 					</script>";
-				}#else do if que verifica as senhas
-			}#isset
+				}#if que verifica as senhas
+			}#else do if que verifica as senhas
+		}#isset
 			
 			//MODELO DE MENSAGEM APÓS QUALQUER CADASTRO NO BANCO DE DADOS.
 			/*
