@@ -25,7 +25,7 @@
 		$id_usuario = $_SESSION["codigo"];
 		include_once "conexao.php";
 		$conexao = conecta_mysql();
-		$sql = "SELECT * FROM postagem where id_usuario=$id_usuario";
+		$sql = "SELECT * FROM postagem where id_usuario=$id_usuario order by data_inclusao desc";
 		$resultado = mysqli_query($conexao,$sql);
 		if($resultado){
 			$mensagens = array();
