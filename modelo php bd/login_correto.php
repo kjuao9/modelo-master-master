@@ -27,7 +27,20 @@
 			<hr/><br/>
 				<table>
 					<tr>
-						<td width="100px" >TWEETS <br/> 0</td>
+						<td width="100px" >TWEETS <br/><?php
+						include_once "conexao.php";
+						 $conexao = conecta_mysql();
+						 $sql = "SELECT * From postagem where id_usuario=$id_usuario";
+						 $resultado = mysqli_query($conexao,$sql);
+						 if($resultado){
+							 $mensagens = array();
+							 while($linha = mysqli_fetch_assoc($resultado)){
+								 $mensagens[] =$linha;
+							 }
+						 }
+						 print count($mensagens);
+						 ?>
+						 </td>
 						<td width="100px">SEGUIDORES <br/> 0</td>
 					</tr>
 				</table>
@@ -35,7 +48,7 @@
 		<div id="div-postagem" class="borda-arredondada">
 			<form method="post" action="">
 				<p class="centralizar">
-					<textarea id="mensagem" name="mensagem" maxlength="140" cols="50" rows="4"
+					<textarea id="mensagem" name="mensagem" required maxlength="140" cols="50" rows="4"
 					placeholder="<?php print "O que você vai postar hoje?"?>"></textarea>
 				</p>
 				<input type="submit" value="Postar"/>
@@ -48,7 +61,7 @@
 				include_once "conexao.php";
 				$con = conecta_mysql();
 					if($con){
-	
+	                                                                        
 					$sql = "INSERT INTO postagem (texto_postagem, id_usuario)
 					values('$mensagem', '$id_usuario')";
 					if(mysqli_query($con, $sql)){
