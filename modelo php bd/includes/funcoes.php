@@ -47,4 +47,19 @@
       return true;
     }
   }
+
+  function listar_mensagens($con,$id_usuario)
+  {
+    $sql = "SELECT * From postagem 
+    where id_usuario=$id_usuario
+    ORDER by data_inclusao desc";
+    $resultado = mysqli_query($con,$sql);
+    if($resultado){
+      $mensagens = array();
+      while($linha = mysqli_fetch_assoc($resultado)){
+        $mensagens[] =$linha;
+      }
+    }
+    return $mensagens;
+  };
   ?>
