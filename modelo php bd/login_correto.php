@@ -5,6 +5,9 @@
 			header("location:index.php?erro=2");
 		}
 		$id_usuario = $_SESSION["codigo"];
+		include_once "conexao.php";
+		include_once "includes/funcoes.php";
+		$con = conecta_mysql();
 	?>
 <html lang="pt-br">
 <head>
@@ -28,17 +31,9 @@
 				<table>
 					<tr>
 						<td width="100px" >TWEETS <br/><?php
-						include_once "conexao.php";
-						 $conexao = conecta_mysql();
-						 $sql = "SELECT * From postagem where id_usuario=$id_usuario";
-						 $resultado = mysqli_query($conexao,$sql);
-						 if($resultado){
-							 $mensagens = array();
-							 while($linha = mysqli_fetch_assoc($resultado)){
-								 $mensagens[] =$linha;
-							 }
-						 }
-						 print count($mensagens);
+						$mensagens = listar_mensagens($con, $id_usuario);
+						print count($mensagens);
+						
 						 ?>
 						 </td>
 						<td width="100px">SEGUIDORES <br/> 0</td>
@@ -58,8 +53,7 @@
 	if(isset($_POST["mensagem"])){
 		$mensagem = $_POST["mensagem"];
 			if(strlen($mensagem) > 1){
-				include_once "conexao.php";
-				$con = conecta_mysql();
+	
 					if($con){
 	                                                                        
 					$sql = "INSERT INTO postagem (texto_postagem, id_usuario)
@@ -73,7 +67,6 @@
 				}
 			}
 		}
-
 
 			?>
 		</div>
