@@ -40,6 +40,6 @@
 			}
 		
 		?>
-	</div> <!-- Div Área principal  -->
+	</div> <!--  Div Área principal  -->
 </body>
 </html>

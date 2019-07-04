@@ -78,6 +78,6 @@
 		<div id="postagem" class="clear">
 			<?php print"Hoje é ".date("d/M/Y").", horário atual: ".date("H:i");?>
 		</div>
-	</div> <!-- Div Área principal  -->
+	</div> <!--  Div Área principal  -->
 </body>
 </html>
