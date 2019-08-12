@@ -5,6 +5,7 @@ if ( !isset($_SESSION["codigo"])){
 	header("location:index.php?erro=2");
 }
 include_once "conexao.php";
+include "includes/funcoes.php";
 $con = conecta_mysql();
 ?>
 <html lang="pt-br">
@@ -41,26 +42,18 @@ $con = conecta_mysql();
             $email = $_POST["email"];
             $codigo = $_SESSION["codigo"];
 
-            function verificar_email($con, $email){
-                $sql = "SELECT email FROM usuarios WHERE email = '$email'";
-                $resultado = mysqli_query($con, $sql);
-                $usuario = mysqli_fetch_assoc($resultado);
-                
-                if( isset($usuario["email"]) ){
-                    print"<script>alert('O E-mail já existe. Escolha outro')</script>";
-                    return false;
-                }
-                else{
-                    $sql = "UPDATE usuarios SET email='$email' WHERE codigo=$codigo";
-                    $resultado = mysqli_query($con, $sql);
-                    if($resultado){
-                        print "E-mail alterado";
-                        $_SESSION["email"] = $email;
-                        
-                    }
-                  return true;
-                }
-              }            
+			if(verificar_email($con, $email) == false){
+				print "<script>alert('O e-mail já existe. Escolha outro')</script>";
+			}
+			else{
+				$sql = "UPDATE usuarios SET email='$email' WHERE codigo=$codigo";
+				$resultado = mysqli_query($con, $sql);
+				if($resultado){
+					print "Email alterado";
+					$_SESSION["email"] = $email;
+				} 
+			}
+        
         }
 		?>
 	</div>
