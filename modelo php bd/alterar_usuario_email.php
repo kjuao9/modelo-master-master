@@ -51,6 +51,7 @@ $con = conecta_mysql();
 				if($resultado){
 					print "Email alterado";
 					$_SESSION["email"] = $email;
+					header("location: login_correto.php");
 				} 
 			}
         

@@ -20,11 +20,12 @@
 
 	<div id="div-area-principal">
 		<div id="div-pessoal" class="borda-arredondada">
-			Nome: <span class="negrito-maior">Nome do Usuário</span> <br/>
-			E-mail: <span class="italico">E-mail do usuário</span> <br/>
-			Código: <span class="italico">Código do Usuário</span><br/>
+			Nome: <span class="negrito-maior"><?php print$_SESSION["nome"]?></span> <br/>
+			E-mail: <span class="italico"><?php print$_SESSION["email"]?></span> <br/>
+			Código: <span class="italico"><?php print$_SESSION["codigo"]?></span><br/>
 		</div>
 		<div id="postagem" class="clear">
+		<a href="alterar_usuario_email.php">Alterar E-mail do Usuário</a><br/><br/>
 			<a href="alterar_usuario_nome.php">Alterar Nome do Usuário</a><br/><br/>
 			<a href="alterar_usuario_senha.php">Alterar Senha do Usuário</a><br/><br/>
 			<a href="alterar_postagens.php">Alterar Postagens</a><br/><br/>
