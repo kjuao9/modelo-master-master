@@ -19,12 +19,45 @@
 	<div id="div-area-principal">
 		<?php
 		//listar a mensagem pelo código recebido aqui
+		$id_postagem = $_GET['id_postagem'];
+		include_once "conexao.php";
+		$con = conecta_mysql();
+		$sql = "SELECT * FROM postagem where id_postagem=$id_postagem";
+		$resultado = mysqli_query($con, $sql);
+		if($resultado){
+			$mensagem = mysqli_fetch_assoc($resultado);
+		}
 		?>
 		<div id="postagem">
-			Criar o Formulário com a mensagem a ser alterada aqui
+			<form method="post" action="">
+			<fieldset>
+				<p>
+					<textarea id="mensagem" name="mensagem" maxlenght="140" cols="70"
+					rows="2" required><?php
+					print $mensagem['texto_postagem'];
+					?>
+				</p>
+				<input type="submit" value="Alterar Mensagem"/>
+				<input type="reset" value="Cancelar"/>
+			</fieldset>
+			</form>
 		</div>
 			<?php
 			//código para alterar a mensagem do formulário aqui
+			if ( isset($_POST["mensagem"]) ){
+				$mensagem = $_POST["mensagem"];
+				$con = conecta_mysql();
+				$sql = "UPDATE postagem SET texto_postagem='$mensagem'
+				WHERE id_postagem='$id_postagem'";
+
+				if(mysqli_query($conexao, $sql)){
+					print "<script language='javascript'>alert('Mensagem Alterada!')</script>";
+			
+				}
+				else{
+					print "erro de SQL";
+				}
+			}
 
 			?>
 	</div> <!-- Div Área principal -->
