@@ -51,7 +51,8 @@
 				WHERE id_postagem='$id_postagem'";
 
 				if(mysqli_query($con, $sql)){
-					print "<script language='javascript'>alert('Mensagem Alterada!')</script>";
+					print "<script language='javascript'>window.location.href=window.location.href; alert('Mensagem Alterada!')</script>";
+					
 			
 				}
 				else{
