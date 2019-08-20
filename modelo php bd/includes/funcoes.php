@@ -62,4 +62,24 @@
     }
     return $mensagens;
   };
+
+  function verificar_se_seguidor($con, $codigo_usuario, $codigo_usuario_seguindo){
+    //a consulta abaico verifica se os dois usuários já são amigos
+    $sql = "SELECT * FROM usuarios_seguidores
+    where id_usuario = '$codigo_usuario'
+    and seguindo_id_usuario = $codigo_usuario_seguindo";
+    $resultado = mysqli_query($con, $sql);
+    $usuario_pesquisado = mysqli_fetch_assoc($resultado);
+    //a linha abaixo verifica se retornou algo no banco de dados
+    if ( isset($usuario_pesquisado['id_usuario_seguidor']) ){
+      print "<span>
+          <a href='procurar_pessoas_deixar_seguir.php?codigo=$codigo_usuario_seguindo'>Deixar_de_Seguir</a>
+            </span>";
+    }
+    else{
+      print "<span>
+      <a href='procurar_pessoas_seguir.php?codigo=$codigo_usuario_seguindo'>Seguir</a>
+        </span>";
+    }
+  }
   ?>

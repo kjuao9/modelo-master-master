@@ -20,6 +20,22 @@
 		<div id="postagem" class="clear">
 			<?php
 			//Código para seguir a pessoa aqui
+			if ( isset($_GET['codigo'])){
+				$id_usuario = $_SESSION['codigo'];
+				$id_usuario_seguir = $_GET['codigo'];
+				include_once "conexao.php";
+				$conexao = conecta_mysql();
+				$sql = "INSERT INTO usuarios_seguidores (id_usuario, seguindo_id_usuario)
+				values ('$id_usuario','$id_usuario_seguir')";
+				$resultado = mysqli_query($conexao,$sql);
+				if($resultado){
+					print "Agora você está seguindo este usuário";
+					print "<pre><a href='procurar_pessoas.php'>Clique aqui para voltar</a>";
+				}
+				else{
+					print "Problema ao seguir usuário, entre em contato com o administrador";
+				}
+			}
 			?>
 		</div>
 
