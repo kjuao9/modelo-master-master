@@ -25,8 +25,7 @@
 				$id_usuario_seguir = $_GET['codigo'];
 				include_once "conexao.php";
 				$conexao = conecta_mysql();
-				$sql = "DELETE FROM usuarios_seguidores id_usuario, seguindo_id_usuario 
-				WHERE '$id_usuario','$id_usuario_seguir' = ";
+				$sql = "DELETE FROM usuarios_seguidores WHERE id_usuario='$id_usuario' and id_usuario_seguir ='$id_usuario_seguir'";
 				$resultado = mysqli_query($conexao,$sql);
 				if($resultado){
 					print "Você deixou de seguir este usuário";
