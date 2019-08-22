@@ -21,18 +21,18 @@
 			<?php
 			//Código para deixar de seguir a pessoa aqui
 			if ( isset($_GET['codigo'])){
-				$id_usuario = $_SESSION['codigo'];
+				$id_usuario = $_SESSION['codigo'];	
 				$id_usuario_seguir = $_GET['codigo'];
 				include_once "conexao.php";
 				$conexao = conecta_mysql();
-				$sql = "DELETE FROM usuarios_seguidores WHERE id_usuario='$id_usuario' and id_usuario_seguir ='$id_usuario_seguir'";
+				$sql = "DELETE FROM usuarios_seguidores WHERE seguindo_id_usuario=$id_usuario_seguir and id_usuario=$id_usuario";
 				$resultado = mysqli_query($conexao,$sql);
 				if($resultado){
 					print "Você deixou de seguir este usuário";
 					print "<pre><a href='procurar_pessoas.php'>Clique aqui para voltar</a>";
 				}
 				else{
-					print "Problema ao seguir usuário, entre em contato com o administrador";
+					print "Problema ao deixar de seguir usuário, entre em contato com o administrador";
 				}
 			}
 			?>
