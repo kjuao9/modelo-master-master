@@ -48,6 +48,6 @@
 			
 			// cada postagem deverá ter o link para alterar a postagem, passando o id para o arquivo alterar_postagens_confirmar.php
 		?>
-	</div> <!-- Div Área principal -->
+	</div> <!-- Div Área principal  -->
 </body>
 </html>
