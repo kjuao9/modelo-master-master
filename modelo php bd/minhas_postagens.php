@@ -31,11 +31,10 @@
 		$mensagens = listar_mensagens($con, $id_usuario);
 
 		foreach ($mensagens as $mensagem) {
-			print "<div id='postagem' class='clear tamanho-450'>";
-			print "Código da Postagem: " .$mensagem["id_postagem"];
-			print "<br>Código do Usuário: ".$mensagem["id_usuario"];
-			print "<br>Texto da Postagem: ".$mensagem["texto_postagem"];
-			print "<br>Data da Postagem: ".$mensagem["data_inclusao"];
+			print "<div id='postagem' class='clear'>";
+			print "<span class='italico'>".$mensagem["data_formatada"]."</span>";
+			print "<br><span class='negrito-maior'>".$_SESSION['nome']."</span>";
+			print "<br/>".$mensagem["texto_postagem"];
 			print "</div>";
 			}
 		
