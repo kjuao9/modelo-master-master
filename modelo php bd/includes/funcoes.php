@@ -1,5 +1,4 @@
 <?php
-
   function bomdia() {
     $ola = date("H");
     if ( ($ola >=18 and $ola <=23) or ($ola >= 0 and $ola <3)){
@@ -12,7 +11,6 @@
       return "Boa Tarde!";
     }
   }
-
   function maiusculo($string){
     $string = strtoupper ($string);
     $string = str_replace ("á","Á",$string);
@@ -32,7 +30,6 @@
     $string = str_replace ("à","À",$string);
     return $string;
   }
-
   function verificar_email($con, $email){
     $sql = "SELECT email FROM usuarios WHERE email = '$email'";
     $resultado = mysqli_query($con, $sql);
@@ -47,8 +44,21 @@
       return true;
     }
   }
-
   function listar_mensagens($con,$id_usuario)
+  {
+    $sql = "SELECT texto_postagem, date_format(data_inclusao, '%d %b %Y, %T') as data_formatada
+    From postagem where id_usuario=$id_usuario
+    ORDER by data_inclusao desc";
+    $resultado = mysqli_query($con,$sql);
+    if($resultado){
+      $mensagens = array();
+      while($linha = mysqli_fetch_assoc($resultado)){
+        $mensagens[] =$linha;
+      }
+    }
+    return $mensagens;
+  };
+  function listar_mensagens2($con,$id_usuario)
   {
     $sql = "SELECT * From postagem 
     where id_usuario=$id_usuario
@@ -62,24 +72,20 @@
     }
     return $mensagens;
   };
-
-  function verificar_se_seguidor($con, $codigo_usuario, $codigo_usuario_seguindo){
-    //a consulta abaico verifica se os dois usuários já são amigos
-    $sql = "SELECT * FROM usuarios_seguidores
-    where id_usuario = '$codigo_usuario'
-    and seguindo_id_usuario = $codigo_usuario_seguindo";
-    $resultado = mysqli_query($con, $sql);
-    $usuario_pesquisado = mysqli_fetch_assoc($resultado);
-    //a linha abaixo verifica se retornou algo no banco de dados
-    if ( isset($usuario_pesquisado['id_usuario_seguidor']) ){
-      print "<span>
-          <a href='procurar_pessoas_deixar_seguir.php?codigo=$codigo_usuario_seguindo'>Deixar_de_Seguir</a>
-            </span>";
+  function listar_mensagens3($con,$id_usuario)
+  {
+    $sql = "SELECT u.nome, p.texto_postagem, date_format(p.data_inclusao, '%d %b %Y, %T') as data_formatada
+    FROM postagem as p join usuarios as u on (u.codigo=p.id_usuario)
+    where id_usuario=$id_usuario
+    or id_usuario in (SELECT seguindo_id_usuario from usuarios_seguidores where id_usuario = $id_usuario)
+    order by p.data_inclusao desc";
+    $resultado = mysqli_query($con,$sql);
+    if($resultado){
+      $mensagens = array();
+      while($linha = mysqli_fetch_assoc($resultado)){
+        $mensagens[] =$linha;
+      }
     }
-    else{
-      print "<span>
-      <a href='procurar_pessoas_seguir.php?codigo=$codigo_usuario_seguindo'>Seguir</a>
-        </span>";
-    }
-  }
+    return $mensagens;
+  };
   ?>

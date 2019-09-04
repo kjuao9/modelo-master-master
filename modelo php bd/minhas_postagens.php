@@ -29,7 +29,6 @@
 		//código da consulta aqui//
 		
 		$mensagens = listar_mensagens($con, $id_usuario);
-
 		foreach ($mensagens as $mensagem) {
 			print "<div id='postagem' class='clear'>";
 			print "<span class='italico'>".$mensagem["data_formatada"]."</span>";
